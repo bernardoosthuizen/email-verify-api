@@ -1,5 +1,9 @@
+"use strict";
+
 import express from 'express'
 import { checkRequest } from "./checkRequest.js"
+import { sendVerification } from "./sendVerification.js"
+import { receiveVerification } from "./receiveVerification.js"
 
 const app = express()
 
@@ -14,19 +18,20 @@ app.get('/api/verify-email',(req,res) => {
 
     // If the email is valid send email to make sure it bolongs to someone
     if (errors.error.length == 0) {
-        
-    }
-
-
-
-
-    if (errors.error.length == 0) {
+        sendVerification(req)
         res.status(200).json({email: Object.values(req.query).toString(), valid: 'true'})
     } else {
         res.json(errors)
     }
     
 })
+
+//Handles when a user clicks on verify email link
+app.get('/api/verify-email/send-verification',(req,res) => {
+    receiveVerification(req)
+})
+
+
 
 //Handle unknown endpoint
 app.all('*', (req,res) => {
@@ -44,7 +49,6 @@ app.listen(3000, () => {
 
 // TODO
 
-// Verify it is an email address
 
 // Send a verification email to user
     // User click on link to endpoint that displays a confirmation page
