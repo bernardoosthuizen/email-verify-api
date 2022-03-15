@@ -12,14 +12,20 @@ app.get('/api/verify-email',(req,res) => {
     // Check if the email is valid
     const errors = checkRequest(req)
 
-    // If the email is valid
+    // If the email is valid send email to make sure it bolongs to someone
+    if (errors.error.length == 0) {
+        
+    }
+
+
+
+
     if (errors.error.length == 0) {
         res.status(200).json({email: Object.values(req.query).toString(), valid: 'true'})
     } else {
         res.json(errors)
     }
-    console.log(errors.error.length)
-    console.log(errors) 
+    
 })
 
 //Handle unknown endpoint
