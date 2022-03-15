@@ -1,5 +1,42 @@
+import express from 'express'
+import { checkRequest } from "./checkRequest.js"
 
-// Receive email via JSON
+const app = express()
+
+// Allow express to accept JSON
+app.use(express.json())
+
+//Handle get request on /api/verify-email enpoint
+app.get('/api/verify-email',(req,res) => {
+    
+    // Check if the email is valid
+    const errors = checkRequest(req)
+
+    // If the email is valid
+    if (errors.error.length == 0) {
+        res.status(200).json({email: Object.values(req.query).toString(), valid: 'true'})
+    } else {
+        res.json(errors)
+    }
+    console.log(errors.error.length)
+    console.log(errors) 
+})
+
+//Handle unknown endpoint
+app.all('*', (req,res) => {
+    res.status(404).json({error: 'Endpoint not found'})
+})
+
+
+// Initialise server to listen on designated port
+app.listen(3000, () => {
+    console.log('Server has started. Listening on port 3000.')
+})
+
+
+
+
+// TODO
 
 // Verify it is an email address
 
