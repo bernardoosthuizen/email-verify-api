@@ -7,14 +7,11 @@ import { receiveVerification } from "./receiveVerification.js"
 
 const app = express()
 
-// createUser({email: "dkjsbfsdlkjfb@dslkjfjbn.com"})
-
-
-
 // Allow express to accept JSON
 app.use(express.json())
 
-//Handle get request on /api/verify-email enpoint
+
+//Handle get request on /api/verify-email endpoint
 //This is the initial request to verify an email address
 app.get('/api/verify-email',(req,res) => {
     
@@ -29,6 +26,8 @@ app.get('/api/verify-email',(req,res) => {
         res.json(errors)
     } 
 })
+
+
 
 //Handles when a user clicks on verify email link
 app.get('/api/verify-email/send-verification',(req,res) => {
@@ -56,7 +55,7 @@ app.listen(3000, () => {
 
 
 // Send a verification email to user
-    // User click on link to endpoint that displays a confirmation page
+    
     // Endpoint also tells server it is verified
 
 // Once verified send response to origin

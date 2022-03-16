@@ -1,4 +1,5 @@
 // This module checks that the request sent is formatted correctly.
+// Function called in 'index.js'
 
 export const checkRequest = (req) => {
 
@@ -12,7 +13,6 @@ export const checkRequest = (req) => {
 
     // Check that only one key was sent with the request
     if (requestKey.length > 1) {
-        // errors.error = Object.assign(errors.error,{code: 429, message: 'Please only send one email pre request'})
         errors.error.push({code: 413, message: 'Please only send one email per request'})
     } 
 
@@ -28,16 +28,7 @@ export const checkRequest = (req) => {
         errors.error.push({code: 406, message: 'Invalid email address sent (expected format: someone@domain.com)'})
     }
 
-
-    
-    
-
-
-
-    
-    return errors;
-
-
+    return errors
 } 
 
 

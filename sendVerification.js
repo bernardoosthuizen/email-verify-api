@@ -8,7 +8,7 @@ export const sendVerification = async (req) => {
     const emailAddress = Object.values(req.query).toString() // DO NOT FORGET TO INSERT
 
     // Create super secret key
-    const secretKey = await crypto.randomBytes(32).toString('base64')
+    const secretKey = await crypto.randomBytes(32).toString('hex')
 
     // Get ID of document in database
     const id = await createUser({email: `${emailAddress}`, key: `${secretKey}`, verified: 'false'})    
@@ -33,7 +33,7 @@ export const sendVerification = async (req) => {
         to: "bar@example.com, baz@example.com", // list of receivers
         subject: "Hello ✔", // Subject line
         text: "Please verify your email address", // plain text body
-        html: `<h1>Hi there, please click the link below to verify your email address.</h1> <h2><a href="http://localhost:3000/api/verify-email/send-verification?id=${id}&key=${secretKey}">Verify Now</a></h2>`  // html body
+        html: `<h1>Hi there, please click the link below to verify your email address.</h1> <h2><a href="http://localhost:3000/api/verify-email/send-verification?id=${emailAddress}&key=${secretKey}">Verify Now</a></h2>`  // html body
     });
 
     console.log("Message sent: %s", info.messageId);

@@ -1,6 +1,10 @@
 import { MongoClient } from 'mongodb'
+import dotenv from "dotenv";
 
-const uri = `mongodb+srv://bernardoosthuizen:07W8IuEHNnwkcPzY@cluster0.s2rr5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+dotenv.config();
+
+const uri = `mongodb+srv://${process.env.MONGO_URI}`
+
 
 const client = new MongoClient(uri)
 
@@ -30,16 +34,36 @@ export const createUser = async (newUser) => {
 
 // Updates document 'verified' field to 'true'.
 // Function called in receiveVerification.js
-export const updateUser = async (id) => {
+export const findByKey = async (key) => {
+
+    var result;
 
     try {
         await client.connect()
 
+        var result = await client.db("mailVerifyDb").collection("_emails").findOne({key: `${key}`})
     } catch (e) {
         console.error(e)
     } finally {
         await client.close()
     }
 
-      
+ return result   
+}
+
+export const updateVerifiedStatus = async (key) => {
+
+    var result;
+
+    try {
+        await client.connect()
+
+        var result = await client.db("mailVerifyDb").collection("_emails").findOne({key: `${key}`})
+    } catch (e) {
+        console.error(e)
+    } finally {
+        await client.close()
+    }
+
+ return result   
 }
