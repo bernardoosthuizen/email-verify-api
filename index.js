@@ -7,10 +7,15 @@ import { receiveVerification } from "./receiveVerification.js"
 
 const app = express()
 
+// createUser({email: "dkjsbfsdlkjfb@dslkjfjbn.com"})
+
+
+
 // Allow express to accept JSON
 app.use(express.json())
 
 //Handle get request on /api/verify-email enpoint
+//This is the initial request to verify an email address
 app.get('/api/verify-email',(req,res) => {
     
     // Check if the email is valid
@@ -19,15 +24,15 @@ app.get('/api/verify-email',(req,res) => {
     // If the email is valid send email to make sure it bolongs to someone
     if (errors.error.length == 0) {
         sendVerification(req)
-        res.status(200).json({email: Object.values(req.query).toString(), valid: 'true'})
+        res.status(200).json({email: `${Object.values(req.query).toString()}`, status:`Verification email sent to user.`})
     } else {
         res.json(errors)
-    }
-    
+    } 
 })
 
 //Handles when a user clicks on verify email link
 app.get('/api/verify-email/send-verification',(req,res) => {
+    res.status(200).send('<h1>Your email has been successfully verified.</h1>')
     receiveVerification(req)
 })
 

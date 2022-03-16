@@ -1,3 +1,10 @@
+import { updateUser } from "./mongoDb.js"
+
 export const receiveVerification = (req) => {
-    console.log(req.query)
+    const key = req.query.key
+    const id = req.query.id
+
+    
+    console.log(key)
+    console.log(id)
 }
