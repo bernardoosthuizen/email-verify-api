@@ -47,7 +47,7 @@ You are now set up and can start your server with the command:
     ```
  
  - Errors:
-    - Email does not meet formatting requirements
+    - Email does not meet formatting requirements.
     ```javascript
     "error:" 
       {
@@ -92,6 +92,15 @@ You are now set up and can start your server with the command:
       "email": {requested email address},
       "verified": true/false
     }
+    ```
+    
+ - Errors:
+    - Email does not exist in database.
+    ```javascript
+    "error:" 
+      {
+        "error": "Email not found'"
+      }
     ```
 ## Tests
 
