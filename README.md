@@ -1,4 +1,4 @@
-# Email Verification REST API - (In Progress)
+# Email Verification REST API
 
 ## Description
 This REST API will allow users to verify email addresses. The intent is to have the API check that an email address is valid by means of regular expressions and sending a verification email to the address.
