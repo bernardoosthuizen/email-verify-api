@@ -22,7 +22,7 @@ app.get('/api/verify-email', async (req,res) => {
 
     // If the email is valid send email to make sure it bolongs to someone
     if (errors.error.length == 0) {
-        sendVerification(req)
+        sendVerification(req.query)
         res.status(200).json({email: `${Object.values(req.query).toString()}`, status:`Verification email sent to user.`})
     } else {
         res.json(errors)

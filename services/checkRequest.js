@@ -7,8 +7,6 @@ export const checkRequest = async (reqQuery) => {
 
     var errors = {error: []}
 
-    console.log(reqQuery)
-
     const requestKey = Object.keys(reqQuery)
 
     // Check that only one key was sent with the request

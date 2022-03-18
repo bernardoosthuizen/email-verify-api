@@ -9,7 +9,7 @@ import { createUser } from "./mongoDb.js"
 
 export const sendVerification = async (req) => {
 
-    const emailAddress = Object.values(req.query).toString() // DO NOT FORGET TO INSERT
+    const emailAddress = Object.values(req).toString() // DO NOT FORGET TO INSERT
 
     // Create super secret key
     const secretKey = await crypto.randomBytes(32).toString('hex')
@@ -51,7 +51,7 @@ export const sendVerification = async (req) => {
     // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
     }
 
-    sendEmail().catch(console.error);
+    return sendEmail().catch(console.error);
 
 }
 
