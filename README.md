@@ -9,59 +9,27 @@ Stay tuned for updates!
 
 ## Documentation
 ### [Introduction](#introduction)
-
-## Title
-
-### Place 1
-
-Hello, this is some text to fill in this, [here](#place-2), is a link to the second place.
-
-### Place 2
-
-Place one has the fun times of linking here, but I can also link back [here](#place-1).
-
-### Place's 3: other example
-
-Place one has the fun times of linking here, but I can also link back [here](#places-3-other-example).
-
-
-
-
-fd
-gdf
-g
-sfg
-dfg
-sd
-gdf
-g
+### [Usage](#usage)
 df
-gdf
-g
-sdd
-gsdfg
-df
-g
-sdfg
-sdfg
-sdf
-g
-sdfg
-df
-gsd
-fg
 ds
+fdg
+gdf
+
+dfg
+df
 g
-sg
-sdf
-
-gf
-dgsfd
+fd
 
 
+dfsg
+df
+gd
+f
 
 
-
+dfgg
+dfs
+gsdfg
 
 
 
