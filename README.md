@@ -104,5 +104,7 @@ You are now set up and can start your server with the command:
     ```
 ## Tests
 
-Coming Soon
+To run tests:
+
+`npm test`
   
