@@ -7,6 +7,51 @@ Stay tuned for updates!
 
 ![project-banner](https://user-images.githubusercontent.com/46342592/158291554-31f71c8b-5ea4-4d5a-bdd7-4c36c951fac5.png)
 
-## TODO
-- Write docs
-- Write tests
+## Documentation
+### [Introduction](##introduction)
+
+
+
+
+
+
+fd
+gdf
+g
+sfg
+dfg
+sd
+gdf
+g
+df
+gdf
+g
+sdd
+gsdfg
+df
+g
+sdfg
+sdfg
+sdf
+g
+sdfg
+df
+gsd
+fg
+ds
+g
+sg
+sdf
+
+gf
+dgsfd
+
+
+
+
+
+
+
+
+
+### Introduction
