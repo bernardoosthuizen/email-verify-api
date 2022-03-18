@@ -18,7 +18,7 @@ export const createUser = async (newUser) => {
 
         const result = await client.db("mailVerifyDb").collection("_emails").insertOne(newUser)
 
-        var id = await result.insertedId.toString()
+        var id = result.insertedId.toString()
 
     } catch (e) {
         console.error(e)
@@ -31,16 +31,18 @@ export const createUser = async (newUser) => {
 
 
 
-// Updates document 'verified' field to 'true'.
-// Function called in receiveVerification.js
-export const findByKey = async (key) => {
+// Verifies wether email is already verified
+// Function called findByEmail.js
+export const findVerified = async (req) => {
+
+    const email = req.query.email
 
     var result;
 
     try {
         await client.connect()
 
-        var result = await client.db("mailVerifyDb").collection("_emails").findOne({key: `${key}`})
+        var result = await client.db("mailVerifyDb").collection("_emails").findOne({email: `${email}`})
     } catch (e) {
         console.error(e)
     } finally {
@@ -50,16 +52,20 @@ export const findByKey = async (key) => {
  return result   
 }
 
+
+
 // Updates document 'verified' field to 'true'.
 // Function called in receiveVerification.js
-export const updateVerifiedStatus = async (key, updatedStatus) => {
+export const updateVerifiedStatus = async (req) => {
+
+    const key = req.query.key
 
     var result;
 
     try {
         await client.connect()
 
-        var result = await client.db("mailVerifyDb").collection("_emails").updateOne({key: `${key}`}, {$set: updatedStatus})
+        var result = await client.db("mailVerifyDb").collection("_emails").updateOne({key: `${key}`}, {$set: {verified: true}})
     } catch (e) {
         console.error(e)
     } finally {

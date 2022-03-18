@@ -3,7 +3,7 @@
 import express from 'express'
 import { checkRequest } from "./checkRequest.js"
 import { sendVerification } from "./sendVerification.js"
-import { receiveVerification } from "./receiveVerification.js"
+import { findVerified, updateVerifiedStatus } from "./mongoDb.js"
 
 const app = express()
 
@@ -32,7 +32,13 @@ app.get('/api/verify-email',(req,res) => {
 //Handles when a user clicks on verify email link
 app.get('/api/verify-email/send-verification',(req,res) => {
     res.status(200).send('<h1>Your email has been successfully verified.</h1>')
-    receiveVerification(req)
+    updateVerifiedStatus(req)
+})
+
+//Handles when a user wants to check if a email if verified
+app.get('/api/verify-email/is-verified',async (req,res) => {
+    const result = await findVerified(req)   
+    res.status(200).json({email: result.email, verified: result.verified})
 })
 
 
