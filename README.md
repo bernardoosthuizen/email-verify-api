@@ -13,10 +13,10 @@ This REST API will allow users to verify email addresses. The intent is to have 
 
 
 
-## Introduction
+### Introduction
 This node.js project allows users to deploy a rudementary email verification process for any project. Once installed, the application will expose endpoints to send a veryfication email to a user and another endpoint to check whether an email address is verified. The endpoints are completely open and do not require authentication, use with caution. 
 
-## Installation and Setup
+### Installation and Setup
 
 Clone down this repository. You will need `node` and `npm` installed globally on your machine.  
 
@@ -35,7 +35,7 @@ You are now set up and can start your server with the command:
 
 `npm start`  
 
-## Endpoints
+### Endpoints
 
 - Send request to verify an email address : __~/api/verify-email__ (GET) : Accepts one query string: email. No JSON header or body is required to send a request. Example: yourdomain.com/api/verify-email?email=name@domain<area>.com
   - Expected JSON response if successful:
@@ -102,9 +102,10 @@ You are now set up and can start your server with the command:
         "error": "Email not found'"
       }
     ```
-## Tests
+### Tests
 
 To run tests:
 
 `npm test`
-  
+ 
+ ## Reflection
