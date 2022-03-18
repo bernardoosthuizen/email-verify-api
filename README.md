@@ -89,7 +89,7 @@ You are now set up and can start your server with the command:
     ("verified" = true; when a user has clicked on the verification link sent to them by email)
     ```javascript
     {
-      "email": {requested email address},
+      "email": {Submitted email address},
       "verified": true/false
     }
     ```
