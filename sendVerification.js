@@ -1,3 +1,7 @@
+// This module handles the addition of data to the the database and sends an email with verification link to the user.
+// Function called in 'index.js'
+
+
 "use strict";
 import nodemailer from 'nodemailer'
 import crypto from 'crypto'
@@ -45,6 +49,7 @@ export const sendVerification = async (req) => {
     }
 
     sendEmail().catch(console.error);
+
 }
 
 

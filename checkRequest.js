@@ -1,7 +1,9 @@
 // This module checks that the request sent is formatted correctly.
 // Function called in 'index.js'
 
-export const checkRequest = (req) => {
+import { findVerified } from "./mongoDb.js"
+
+export const checkRequest = async (req) => {
 
     // var errors = ["error:"];
 
@@ -26,6 +28,13 @@ export const checkRequest = (req) => {
     
     if (!emailRegex.test(Object.values(request))) {
         errors.error.push({code: 406, message: 'Invalid email address sent (expected format: someone@domain.com)'})
+    }
+
+    // Check if the email has already been added to the database
+    const exists = await findVerified(req)
+
+    if (exists) {
+        errors.error.push({code: 409, message: 'Email address already exists in database', email: exists.email, verified: exists.verified}) 
     }
 
     return errors

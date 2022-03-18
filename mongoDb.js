@@ -1,3 +1,6 @@
+// This module handles all database operations
+// Functions called in 'index.js' and 'checkRequest.js'
+
 import { MongoClient } from 'mongodb'
 import dotenv from "dotenv";
 
@@ -15,24 +18,20 @@ export const createUser = async (newUser) => {
 
     try {
         await client.connect()
-
         const result = await client.db("mailVerifyDb").collection("_emails").insertOne(newUser)
-
         var id = result.insertedId.toString()
-
     } catch (e) {
         console.error(e)
     } finally {
         await client.close()
     }
-
-    return id  
+return id  
 }
 
 
 
-// Verifies wether email is already verified
-// Function called findByEmail.js
+// Verifies whether email is already verified
+// Function called in index.js and checkRequest.js
 export const findVerified = async (req) => {
 
     const email = req.query.email
@@ -41,21 +40,19 @@ export const findVerified = async (req) => {
 
     try {
         await client.connect()
-
         var result = await client.db("mailVerifyDb").collection("_emails").findOne({email: `${email}`})
     } catch (e) {
         console.error(e)
     } finally {
         await client.close()
     }
-
- return result   
+return result   
 }
 
 
 
 // Updates document 'verified' field to 'true'.
-// Function called in receiveVerification.js
+// Function called in index.js
 export const updateVerifiedStatus = async (req) => {
 
     const key = req.query.key
@@ -64,13 +61,11 @@ export const updateVerifiedStatus = async (req) => {
 
     try {
         await client.connect()
-
         var result = await client.db("mailVerifyDb").collection("_emails").updateOne({key: `${key}`}, {$set: {verified: true}})
     } catch (e) {
         console.error(e)
     } finally {
         await client.close()
     }
-
- return result   
+return result   
 }
