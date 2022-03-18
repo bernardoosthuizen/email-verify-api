@@ -3,9 +3,9 @@
 "use strict";
 
 import express from 'express'
-import { checkRequest } from "./checkRequest.js"
-import { sendVerification } from "./sendVerification.js"
-import { findVerified, updateVerifiedStatus } from "./mongoDb.js"
+import { checkRequest } from "./services/checkRequest.js"
+import { sendVerification } from "./services/sendVerification.js"
+import { findVerified, updateVerifiedStatus } from "./services/mongoDb.js"
 
 const app = express()
 
@@ -18,7 +18,7 @@ app.use(express.json())
 app.get('/api/verify-email', async (req,res) => {
     
     // Check if the email is valid
-    const errors = await checkRequest(req)
+    const errors = await checkRequest(req.query)
 
     // If the email is valid send email to make sure it bolongs to someone
     if (errors.error.length == 0) {
@@ -43,15 +43,14 @@ app.get('/api/verify-email/send-verification',async (req,res) => {
 })
 
 //Handles when a user wants to check if a email if verified
-app.get('/api/verify-email/is-verified',async (req,res) => {
+app.get('/api/verify-email/check-verified',async (req,res) => {
     const result = await findVerified(req)
 
     if (result) {
         res.status(200).json({email: result.email, verified: result.verified})
     } else {
         res.status(404).json({error: 'Email not found'})
-    }
-    
+    } 
 })
 
 

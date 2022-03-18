@@ -19,6 +19,9 @@ export const sendVerification = async (req) => {
     
     // Sends email to user for verification
     async function sendEmail() {
+
+    // Only needed if you don't have a real mail account for testing
+    let testAccount = await nodemailer.createTestAccount();
     
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
@@ -26,15 +29,15 @@ export const sendVerification = async (req) => {
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-            user: 'eldora.eichmann41@ethereal.email',
-            pass: 'q6any9HwjUzn1EjbFV'
+            user: testAccount.user,
+            pass: testAccount.pass
         },
     });
 
     // send mail with defined transport object
     let info = await transporter.sendMail({
         from: '"Fred Foo 👻" <foo@example.com>', // sender address
-        to: "bar@example.com, baz@example.com", // list of receivers
+        to: emailAddress, // list of receivers
         subject: "Hello ✔", // Subject line
         text: "Please verify your email address", // plain text body
         html: `<h1>Hi there, please click the link below to verify your email address.</h1> <h2><a href="http://localhost:3000/api/verify-email/send-verification?id=${emailAddress}&key=${secretKey}">Verify Now</a></h2>`  // html body

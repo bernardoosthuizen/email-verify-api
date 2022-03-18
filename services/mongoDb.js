@@ -10,6 +10,9 @@ const uri = process.env.MONGO_URI
 
 const client = new MongoClient(uri)
 
+const dbName = "mailVerifyDb" //Database name
+const collectionName = "_emails" // Collection name in database
+
 // Creates a new document with user 'email', 'id' and 'verified' fields
 // Function called in sendVerification.js
 export const createUser = async (newUser) => {
@@ -18,7 +21,7 @@ export const createUser = async (newUser) => {
 
     try {
         await client.connect()
-        const result = await client.db("mailVerifyDb").collection("_emails").insertOne(newUser)
+        const result = await client.db(dbName).collection(collectionName).insertOne(newUser)
         var id = result.insertedId.toString()
     } catch (e) {
         console.error(e)
@@ -32,9 +35,9 @@ return id
 
 // Verifies whether email is already verified
 // Function called in index.js and checkRequest.js
-export const findVerified = async (req) => {
+export const findVerified = async (reqQuery) => {
 
-    const email = req.query.email
+    const email = reqQuery.email
 
     var result;
 

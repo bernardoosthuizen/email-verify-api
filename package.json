@@ -4,8 +4,12 @@
   "description": "RESTAPI for email verification",
   "main": "index.js",
   "type": "module",
+  "jest": {
+    "verbose": true,
+    "transform": {}
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "start": "nodemon index.js"
   },
   "keywords": [
@@ -24,6 +28,9 @@
     "nodemailer": "^6.7.2"
   },
   "devDependencies": {
+    "jest": "^27.5.1",
+    "jest-environment-jsdom-sixteen": "^1.0.3",
+    "jest-environment-node": "^26.1.0",
     "nodemon": "^2.0.15"
   }
 }
