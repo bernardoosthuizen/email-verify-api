@@ -3,8 +3,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const uri = `mongodb+srv://${process.env.MONGO_URI}`
-
+const uri = process.env.MONGO_URI
 
 const client = new MongoClient(uri)
 
@@ -51,14 +50,16 @@ export const findByKey = async (key) => {
  return result   
 }
 
-export const updateVerifiedStatus = async (key) => {
+// Updates document 'verified' field to 'true'.
+// Function called in receiveVerification.js
+export const updateVerifiedStatus = async (key, updatedStatus) => {
 
     var result;
 
     try {
         await client.connect()
 
-        var result = await client.db("mailVerifyDb").collection("_emails").findOne({key: `${key}`})
+        var result = await client.db("mailVerifyDb").collection("_emails").updateOne({key: `${key}`}, {$set: updatedStatus})
     } catch (e) {
         console.error(e)
     } finally {

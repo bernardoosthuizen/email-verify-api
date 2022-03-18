@@ -54,9 +54,5 @@ app.listen(3000, () => {
 // TODO
 
 
-// Send a verification email to user
-    
-    // Endpoint also tells server it is verified
-
 // Once verified send response to origin
 

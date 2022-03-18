@@ -11,7 +11,7 @@ export const sendVerification = async (req) => {
     const secretKey = await crypto.randomBytes(32).toString('hex')
 
     // Get ID of document in database
-    const id = await createUser({email: `${emailAddress}`, key: `${secretKey}`, verified: 'false'})    
+    const id = await createUser({email: `${emailAddress}`, key: `${secretKey}`, verified: false})    
     
     // Sends email to user for verification
     async function sendEmail() {
