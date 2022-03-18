@@ -8,7 +8,7 @@ Stay tuned for updates!
 ![project-banner](https://user-images.githubusercontent.com/46342592/158291554-31f71c8b-5ea4-4d5a-bdd7-4c36c951fac5.png)
 
 ## Documentation
-### [Introduction](##introduction)
+### [Introduction](###-introduction)
 
 
 
