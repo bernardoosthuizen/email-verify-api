@@ -109,3 +109,4 @@ To run tests:
 `npm test`
  
  ## Reflection
+I felt very productive and proud after completing this project. I am pleased how I'm able to apply the things that I have learnt. It was the first time I have written tests. These proved to be very useful as I discovered some edge cases that needed to be addressed. Some improvements would include integrating API keys to secure endpoints and use object oriented programming techniques to improve code structure.
